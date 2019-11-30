@@ -9,5 +9,6 @@ class LoadOnShift extends Model
     protected $table='load_on_shift';
     public $timestamps=false;
     public $incrementing=false;
-    protected $fillable=['shift','material','distance','exa','on_load','unload','dumped'];
+    protected $fillable=['kode','shift','dt','material','distance','exa','on_load','unload','dumped'];
+    public $keyType='string';
 }

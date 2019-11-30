@@ -15,10 +15,12 @@ class CreateDelayOnShiftsTable extends Migration
     {
         Schema::create('delay_on_shift', function (Blueprint $table) {
             $table->string('shift',16);
+            $table->bigInteger('dt')->unsigned();
             $table->string('jeda',3);
             $table->time('start');
             $table->time('stop')->nullable();
             $table->text('ket')->nullable();
+            $table->foreign('dt')->references('id_dt')->on('unit_dt')->onDelete('cascade');
             $table->foreign('shift')->references('kode')->on('shift')->onDelete('cascade');
             $table->foreign('jeda')->references('kode_jeda')->on('jeda')->onDelete('cascade');
         });

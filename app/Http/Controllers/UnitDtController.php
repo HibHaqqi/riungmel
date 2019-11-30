@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UnitDt;
+use App\Shift;
 
 class UnitDtController extends Controller
 {
@@ -20,6 +21,14 @@ class UnitDtController extends Controller
 
     public function all()
     {
-    	return UnitDt::all();
+    	return UnitDt::where('ready','=',1)->get();
+    }
+
+    public function hmUsed($dt)
+    {
+        $sum=0.0;
+        foreach (Shift::where('dt','=',$dt)->get() as $shift) {
+            $sum+=$shift->hm_stop-$shift->hm_start;
+        } return ['last_hm'=>$sum];
     }
 }

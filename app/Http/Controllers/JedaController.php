@@ -16,18 +16,22 @@ class JedaController extends Controller
     public function start(Request $req)
     {
     	$d=new DelayOnShift;
-    	$d->shift=$req->shift;
+		$d->shift=$req->shift;
+		$d->dt=$req->dt;
     	$d->jeda=$req->jeda;
     	$d->start=$req->start;
-    	$d->ket=$req->ket;
+		$d->ket=$req->ket;
+		$d->stop=null;
     	$d->save();
     	return ['msg'=>'Data saved','item'=>$d];
     }
 
     public function stop(Request $req)
     {
-    	DelayOnShift::where([['shift','=',$req->shift],['jeda','=',$req->jeda],['start','=',$req->start]])->update(['stop'=>$req->stop,'ket'=>$req->ket]);
-    	$d=DelayOnShift::where([['shift','=',$req->shift],['jeda','=',$req->jeda],['start','=',$req->start]])->first();
+		DelayOnShift::where([['shift','=',$req->shift],['jeda','=',$req->jeda],['start','=',$req->start]])
+		->update(['stop'=>$req->stop,'ket'=>$req->ket]);
+		$d=DelayOnShift::where([['shift','=',$req->shift],['jeda','=',$req->jeda],['start','=',$req->start]])
+		->first();
     	return ['msg'=>'Data saved','item'=>$d];
     }
 }

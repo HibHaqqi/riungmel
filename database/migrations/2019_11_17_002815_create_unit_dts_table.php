@@ -19,6 +19,7 @@ class CreateUnitDtsTable extends Migration
             $table->string('cn',15);
             $table->string('tipe',18);
             $table->integer('cap_vessel');
+            $table->integer('ready');
         });
     }
 

@@ -10,4 +10,6 @@ class Material extends Model
     protected $primaryKey='no';
     protected $fillable=['no','material','swell'];
     public $timestamps=false;
+    public $keyType='string';
+    public $incrementing=false;
 }

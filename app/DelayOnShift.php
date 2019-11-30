@@ -9,5 +9,5 @@ class DelayOnShift extends Model
     public $timestamps=false;
     public $incrementing=false;
     protected $table='delay_on_shift';
-    protected $fillable=['shift','jeda','start','stop','ket'];
+    protected $fillable=['shift','dt','jeda','start','stop','ket'];
 }

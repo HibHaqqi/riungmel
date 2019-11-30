@@ -18,10 +18,13 @@ class ShiftController extends Controller
     	$d=date('Y-m-d');
     	$s=new Shift;
     	$s->driver=$req->driver;
-    	$s->kode=$req->driver . 'a' . str_replace('-', '', $d);
+    	$s->kode=$req->driver . 'a' . str_replace('-', 'b', $d);
     	$s->dt=$req->dt;
     	$s->hm_date=$d;
     	$s->start_time=$t;
+		$s->hm_start=$req->hm;
+		$s->hm_stop=null;
+		$s->stop_time=null;
     	$s->save();
     	return ['msg'=>'shift started','item'=>$s];
     }
@@ -31,7 +34,6 @@ class ShiftController extends Controller
     	$t=date('H:i:s');
     	$s=Shift::find($req->shift);
     	$s->stop_time=$t;
-    	$s->hm_start=$req->start;
     	$s->hm_stop=$req->stop;
     	$s->save();
     	return ['msg'=>'shift stoped','item'=>$s];

@@ -23,12 +23,12 @@ class LoggedInController extends Controller
     	if ($log!=null){
     		$msg='Please get out another login';
     	} else $msg='Data not found';
-    	return ['msg'=>$msg,'izin'=>$log];
+    	return ['msg'=>$msg,'item'=>$log];
     }
 
-    public function del($driver,$mac)
+    public function del(Request $req)
     {
-        LoggedIn::where([['driver','=',$driver],['mac_addr','=',$mac]])->delete();
+        LoggedIn::where([['driver','=',$req->driver],['mac_addr','=',$req->mac]])->delete();
         return ['msg'=>'Data has been deleted'];
     }
 }
